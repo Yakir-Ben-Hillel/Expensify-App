@@ -37,7 +37,7 @@ const DrawerHandler: React.FC<IDrawer> = ({ open, handleDrawerClose }) => {
       </div>
       <Divider />
       <List>
-        <ListItem button component={Link} to={'/'}>
+        <ListItem button component={Link} to={'/dashboard'}>
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>

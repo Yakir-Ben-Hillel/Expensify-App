@@ -16,8 +16,6 @@ import DateComponent from './FormComponents/DateComponent';
 import Description from './FormComponents/DescriptionComponent';
 import Note from './FormComponents/NoteComponent';
 import ErrorSnackBar from './SnackBars/errorBar';
-// import { ThunkDispatch } from 'redux-thunk';
-// import { AnyAction } from 'redux';
 interface IProps {
   expenses: Row[];
   startEditExpense: (

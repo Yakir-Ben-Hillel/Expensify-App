@@ -24,13 +24,11 @@ const useStyles = makeStyles((theme: Theme) =>
 const ExpenseDashboardPage: React.FC<IProps> = props => {
   React.useEffect(() => {
     new Promise((resolve, reject) => {
-      props.startSetExpenses();
       setTimeout(() => {
         resolve();
-      }, 2500);
+      }, 2000);
     }).then(() => {
       SetIsMounted(true);
-      console.log('mounted');
     }); // eslint-disable-next-line
   }, []);
 

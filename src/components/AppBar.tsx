@@ -13,14 +13,18 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import clsx from 'clsx';
 import React from 'react';
 import DrawerHandler from './AppBarComponents/Drawer';
-import RenderMenu from './AppBarComponents/RenderMenu';
+import RenderMenuDesktop from './AppBarComponents/RenderMenu';
 import RenderMobileMenu from './AppBarComponents/RenderMobileMenu';
 import useStyles from './AppBarComponents/useStyles';
+import { connect } from 'react-redux';
+import { startLogout } from '../redux/actions/auth';
+
 interface IBar {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  startLogout: () => Promise<void>;
 }
-const Bar: React.FC<IBar> = ({ open, setOpen }) => {
+const Bar: React.FC<IBar> = ({ open, setOpen, startLogout }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [
@@ -32,13 +36,14 @@ const Bar: React.FC<IBar> = ({ open, setOpen }) => {
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const menuId = 'primary-search-account-menu';
   const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMenu = () =>
-    RenderMenu({
-      anchorEl,
-      open: isMenuOpen,
-      handleMenuClose,
-      menuId
-    });
+  const renderMenu = () => (
+    <RenderMenuDesktop
+      anchorEl={anchorEl}
+      open={isMenuOpen}
+      handleMenuClose={handleMenuClose}
+      menuId={menuId}
+    />
+  );
   const renderMobileMenu = () =>
     RenderMobileMenu({
       mobileMoreAnchorEl,
@@ -144,4 +149,11 @@ const Bar: React.FC<IBar> = ({ open, setOpen }) => {
     </div>
   );
 };
-export default Bar;
+const mapDispatchToProps = {
+  startLogout
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Bar);

@@ -9,6 +9,8 @@ const SORT_BY_DATE = 'SORT_BY_DATE';
 const SET_START_DATE = 'SET_START_DATE';
 const SET_END_DATE = 'SET_END_DATE';
 const SET_SNACK_BAR_STATUS = 'SET_SNACK_BAR_STATUS';
+const LOGIN = 'LOGIN';
+const LOGOUT = 'LOGOUT';
 export interface AddExpenseAction {
   type: typeof ADD_EXPENSE;
   expense: IExpense;
@@ -55,6 +57,13 @@ export interface SetEndDate {
   type: typeof SET_END_DATE;
   endDate: IFilter['endDate'];
 }
+export interface Login {
+  type: typeof LOGIN;
+  uid: string;
+}
+export interface Logout {
+  type: typeof LOGOUT;
+}
 export type ExpenseActionTypes =
   | AddExpenseAction
   | RemoveExpenseAction
@@ -66,4 +75,5 @@ export type FilterActionTypes =
   | SortByDate
   | SetStartDate
   | SetEndDate;
+export type AuthActionTypes = Login | Logout;
 export type SnackBarActionTypes = SetSnackBarStatus;

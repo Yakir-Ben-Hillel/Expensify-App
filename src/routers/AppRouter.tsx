@@ -1,32 +1,52 @@
 import clsx from 'clsx';
+import createHistory from 'history/createBrowserHistory';
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Route, Router, Switch } from 'react-router-dom';
 import Bar from '../components/AppBar';
 import useStyles from '../components/AppBarComponents/useStyles';
 import ExpenseDashboardPage from '../components/ExpenseDashboardPage';
 import HelpPage from '../components/HelpPage';
+import Login from '../components/loginPage';
 import NotFoundPage from '../components/NotFoundPage';
-
-const AppRouter: React.FC = () => {
+import { AppState } from '../redux/@types/state-interfaces';
+export const history = createHistory();
+interface IProps {
+  isAuthenticated: boolean;
+}
+const AppRouter: React.FC<IProps> = props => {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
+
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <div>
-        <Bar open={open} setOpen={setOpen} />
+        {props.isAuthenticated && <Bar open={open} setOpen={setOpen} />}
         <main
           className={clsx(classes.content, classes.grow, {
             [classes.contentShift]: open
           })}
         >
           <Switch>
-            <Route path='/' component={ExpenseDashboardPage} exact={true} />
+            <Route
+              path='/'
+              component={!props.isAuthenticated ? Login : ExpenseDashboardPage}
+              exact={true}
+            />
+            <Route
+              path='/dashboard'
+              component={props.isAuthenticated ? ExpenseDashboardPage : Login}
+            />
             <Route path='/help' component={HelpPage} />
             <Route component={NotFoundPage} />
           </Switch>
         </main>
-      </div>
-    </BrowserRouter>
+      </div>{' '}
+    </Router>
   );
 };
-export default AppRouter;
+
+const MapStateToProps = (state: AppState) => ({
+  isAuthenticated: !!state.authentication.uid
+});
+export default connect(MapStateToProps)(AppRouter);
