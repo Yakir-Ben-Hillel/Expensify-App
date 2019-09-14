@@ -17,5 +17,5 @@
     "checkJs": true,
     "pretty": true
   },
-  "include": ["src"]
+  "include": ["src", "AmountComponent.tsx"]
 }

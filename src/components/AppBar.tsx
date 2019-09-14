@@ -1,15 +1,10 @@
 import AppBar from '@material-ui/core/AppBar';
-import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
-//import InputBase from '@material-ui/core/InputBase';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-//import SearchIcon from '@material-ui/icons/Search';
 import clsx from 'clsx';
 import React from 'react';
 import DrawerHandler from './AppBarComponents/Drawer';
@@ -18,7 +13,6 @@ import RenderMobileMenu from './AppBarComponents/RenderMobileMenu';
 import useStyles from './AppBarComponents/useStyles';
 import { connect } from 'react-redux';
 import { startLogout } from '../redux/actions/auth';
-
 interface IBar {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -94,31 +88,8 @@ const Bar: React.FC<IBar> = ({ open, setOpen, startLogout }) => {
           <Typography className={classes.title} variant='h6' noWrap>
             Expensify App
           </Typography>
-          {/* <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder='Search…'
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div> */}
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label='show 4 new mails' color='inherit'>
-              <Badge badgeContent={0} color='secondary'>
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton aria-label='show 17 new notifications' color='inherit'>
-              <Badge badgeContent={0} color='secondary'>
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
             <IconButton
               edge='end'
               aria-label='account of current user'

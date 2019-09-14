@@ -4,7 +4,7 @@ import ErrorIcon from '@material-ui/icons/Error';
 import React from 'react';
 
 interface IDescription {
-  description: string;
+  description: string ;
   onDescriptionChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 const Description: React.FC<IDescription> = ({

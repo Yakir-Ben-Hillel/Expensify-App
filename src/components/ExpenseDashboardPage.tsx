@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { AppState } from '../redux/@types/state-interfaces';
 import { startSetExpenses } from '../redux/actions/expensesActions';
 import ExpenseList from './expenseTable';
+import { BreakpointProvider } from 'react-socks';
 import AddExpenseSnackBar from './SnackBars/AddExpenseBar';
 interface IProps {
   startSetExpenses: () => void;
@@ -38,12 +39,14 @@ const ExpenseDashboardPage: React.FC<IProps> = props => {
     <div>
       {isMounted ? (
         <div>
-          {' '}
-          <ExpenseList />
-          <AddExpenseSnackBar
-            variant='success'
-            massage='Expense added sucessesfuly!'
-          />
+          <BreakpointProvider>
+            {' '}
+            <ExpenseList />
+            <AddExpenseSnackBar
+              variant='success'
+              massage='Expense added sucessesfuly!'
+            />
+          </BreakpointProvider>
         </div>
       ) : (
         <div className={classes.root}>

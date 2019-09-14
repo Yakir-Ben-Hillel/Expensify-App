@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { useStyles } from '../ExpenseFormFnc';
 interface INote {
-  note: string;
+  note: string | undefined;
   onNoteChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 const Note: React.FC<INote> = ({ note, onNoteChange }) => {

@@ -10,6 +10,15 @@ import NumberFormat from 'react-number-format';
 
 // eslint-disable-next-line
 
+export function whichErrorMassageToDisplay(
+  description: string,
+  amount: number
+): string {
+  if (!description && !amount) return 'Description and Amount are required!';
+  else if (!description && amount) return 'Description is required!';
+  else return 'Amount is required!';
+}
+
 export function NumberFormatCustom(props: NumberFormatCustomProps) {
   const { inputRef, onChange, ...other } = props;
 
@@ -70,7 +79,8 @@ export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
-      flexWrap: 'wrap'
+      flexWrap: 'wrap',
+      width: 'max'
     },
     formControl: {
       margin: theme.spacing(1)
