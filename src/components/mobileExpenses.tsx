@@ -41,9 +41,8 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: theme.typography.pxToRem(15)
     },
     noInfoContainer: {
-      height: '80vh',
-      width: 'auto',
       display: 'block',
+      height:'80vh',
       backgroundImage: `url(${BackgroundImage})`,
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',

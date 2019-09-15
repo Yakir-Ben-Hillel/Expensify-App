@@ -85,7 +85,10 @@ const useStyles = makeStyles((theme: Theme) =>
       transition: theme.transitions.create('width'),
       width: '100%',
       [theme.breakpoints.up('md')]: {
-        width: 200
+        width: 120,
+        '&:focus': {
+          width: 200
+        }
       }
     },
     sectionDesktop: {

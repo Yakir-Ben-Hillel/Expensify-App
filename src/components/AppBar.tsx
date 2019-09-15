@@ -12,6 +12,8 @@ import RenderMenuDesktop from './AppBarComponents/RenderMenu';
 import RenderMobileMenu from './AppBarComponents/RenderMobileMenu';
 import useStyles from './AppBarComponents/useStyles';
 import { connect } from 'react-redux';
+import InputBase from '@material-ui/core/InputBase';
+import SearchIcon from '@material-ui/icons/Search';
 import { startLogout } from '../redux/actions/auth';
 interface IBar {
   open: boolean;
