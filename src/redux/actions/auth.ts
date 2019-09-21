@@ -14,12 +14,11 @@ export const logout = (): Logout => {
 };
 export const startLogin = () => {
   return () => {
-    return firebase.auth().signInWithPopup(googleAuthProvider);
+    return firebase.auth().signInWithPopup(googleAuthProvider);                                   
   };
 };
 export const startLogout = () => {
   return () => {
-    console.log('i logged out');
     return firebase.auth().signOut();
   };
 };

@@ -8,7 +8,7 @@
         ".write": "$user_id === auth.uid",
           "expenses": {
             "$expense_id": {
-              ".validate": "newData.hasChildren(['description','note','createdAt','amount'])",
+              ".validate": "newData.hasChildren(['description','amount','createdAt','note'])",
               "description":{
                 ".validate":"newData.isString() && newData.val().length > 0"
               },
@@ -19,7 +19,7 @@
                 ".validate":"newData.isString()"
               },
               "amount":{
-                ".validate":"newData.isString()&& newData.val().length > 0"
+                ".validate":"newData.isNumber()||(newData.isString()&&newData.val().length > 0)"
               },
               "$other": {
                 ".validate":false

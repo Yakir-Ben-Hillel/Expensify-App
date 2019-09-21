@@ -125,7 +125,7 @@ const FormDialog: React.FC<IProps> = props => {
         aria-describedby='alert-dialog-description'
       >
         <DialogTitle id='alert-dialog-title'>
-          {props.isUpdating ? 'Add Expense' : 'Edit Expense'}
+          {!props.isUpdating ? 'Add Expense' : 'Edit Expense'}
         </DialogTitle>
         <DialogContent>
           <DialogContentText>

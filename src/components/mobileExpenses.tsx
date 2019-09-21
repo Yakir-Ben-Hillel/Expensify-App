@@ -7,6 +7,7 @@ import {
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import SearchBar from './searchBar';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
@@ -18,7 +19,8 @@ import { connect } from 'react-redux';
 import {
   AppState,
   IExpense,
-  ISnackBar
+  ISnackBar,
+  IFilter
 } from '../redux/@types/state-interfaces';
 import { SetSnackBarStatus } from '../redux/@types/types';
 import {
@@ -34,6 +36,7 @@ import RemoveDialog from './FormComponents/removeDialog';
 import AddIcon from '@material-ui/icons/Add';
 import FormDialog from './FormComponents/formDialog';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import visibleExpenses from '../redux/selectors/visibleExpenses';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -42,7 +45,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     noInfoContainer: {
       display: 'block',
-      height:'80vh',
+      height: '80vh',
       backgroundImage: `url(${BackgroundImage})`,
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -72,6 +75,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 interface IProps {
   expenses: IExpense[];
+  filters: IFilter;
   startRemoveExpense: (id: string) => void;
   startSetExpenses: () => void;
   startAddExpense: (expenseData: {
@@ -90,6 +94,7 @@ const MobileExpensesList: React.FC<IProps> = props => {
   const [removeDialogOpen, setRemoveDialogOpen] = React.useState(false);
   const [formDialogOpen, setFormDialogOpen] = React.useState(false);
   const [isUpdating, setIsUpdating] = React.useState(false);
+  const filteredExpenses = visibleExpenses(props.expenses, props.filters.text);
   const handleChange = (panel: number) => (
     event: React.ChangeEvent<{}>,
     isExpanded: boolean
@@ -114,6 +119,7 @@ const MobileExpensesList: React.FC<IProps> = props => {
         <div>
           <Container maxWidth='md'>
             <Typography variant='h6'>Expenses List</Typography>
+            <SearchBar />
             <RemoveDialog
               open={removeDialogOpen}
               setDialogOpen={setRemoveDialogOpen}
@@ -125,7 +131,7 @@ const MobileExpensesList: React.FC<IProps> = props => {
               isUpdating={isUpdating}
               expense={expenseToEdit}
             />
-            {props.expenses.map((expense, index) => (
+            {filteredExpenses.map((expense, index) => (
               <ExpansionPanel
                 key={index}
                 expanded={expanded === index}
@@ -209,6 +215,7 @@ const mapDispatchToProps = {
 const mapStateToProps = (state: AppState) => {
   return {
     expenses: state.expenses,
+    filters: state.filters,
     snackBar: state.snackBar
   };
 };
