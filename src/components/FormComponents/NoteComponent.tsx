@@ -14,6 +14,7 @@ const Note: React.FC<INote> = ({ note, onNoteChange }) => {
         id='filled-adornment-multiline-flexible'
         placeholder='Add your note here...'
         label='Note'
+        autoComplete='off'
         multiline
         rowsMax='4'
         value={note}

@@ -19,6 +19,7 @@ const Amount: React.FC<IAmount> = ({ amount, onAmountChange }) => {
         <TextField
           margin='dense'
           id='filled-adornment-amount'
+          autoComplete='off'
           //variant='filled'
           label='Amount'
           required
