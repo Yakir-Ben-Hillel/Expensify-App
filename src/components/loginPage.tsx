@@ -14,6 +14,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { connect } from 'react-redux';
 import { startLogin } from '../redux/actions/auth';
+import GoogleSignInButton from './buttons/googleSignIn';
+import firebase from 'firebase';
 function Copyright() {
   return (
     <Typography variant='body2' color='textSecondary' align='center'>
@@ -29,6 +31,21 @@ const useStyles = makeStyles(theme => ({
     body: {
       backgroundColor: theme.palette.common.white
     }
+  },
+  googleButton: {
+    height: '40px',
+    borderWidth: '0',
+    backgroundColor: 'white',
+    color: '#737373',
+    borderRadius: '5px',
+    whiteSpace: 'nowrap',
+    boxShadow: ' 1px 1px 0px 1px rgba(0,0,0,0.05)',
+    transitionProperty: 'background-color,box-shadow',
+    transitionTimingFunction: 'ease-in-out',
+    transitionDuration: '150ms',
+    marginBottom: theme.spacing(1),
+    fontSize: '14px',
+    fontWeight: 'bold'
   },
   paper: {
     marginTop: theme.spacing(1),
@@ -52,6 +69,35 @@ interface IProps {
   startLogin: () => Promise<firebase.auth.UserCredential>;
 }
 const Login: React.FC<IProps> = ({ startLogin }) => {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [errorMessage, setErrorMessage] = React.useState('');
+  const whichMessageToShow = (errorCode: string) => {
+    switch (errorCode) {
+      case 'auth/invalid-email':
+        setErrorMessage('The email address is invalid.');
+        break;
+      case 'auth/user-not-found':
+        setErrorMessage('The user does not exist, please Sign Up to proceed.');
+        break;
+      case 'auth/wrong-password':
+        setErrorMessage(
+          'The password is invalid or the user signed in with Google.'
+        );
+        break;
+      default:
+        setErrorMessage('');
+    }
+  };
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch(error => {
+        whichMessageToShow(error.code);
+      });
+  };
   const classes = useStyles();
 
   return (
@@ -64,41 +110,55 @@ const Login: React.FC<IProps> = ({ startLogin }) => {
         <Typography component='h1' variant='h5'>
           Sign in
         </Typography>
-        <TextField
-          variant='outlined'
-          margin='normal'
-          required
-          fullWidth
-          id='email'
-          label='Email Address'
-          name='email'
-          autoComplete='email'
-          autoFocus
-        />
-        <TextField
-          variant='outlined'
-          margin='normal'
-          required
-          fullWidth
-          name='password'
-          label='Password'
-          type='password'
-          id='password'
-          autoComplete='current-password'
-        />
-        <FormControlLabel
-          control={<Checkbox value='remember' color='primary' />}
-          label='Remember me'
-        />
-        <Button
-          onClick={startLogin}
-          type='submit'
-          fullWidth
-          variant='contained'
-          color='primary'
-          className={classes.submit}
-        >
-          Sign In
+        <form onSubmit={onSubmit}>
+          <TextField
+            variant='outlined'
+            margin='normal'
+            required
+            fullWidth
+            id='email'
+            value={email}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setEmail(e.target.value)
+            }
+            label='Email Address'
+            name='email'
+            autoComplete='email'
+          />
+          <TextField
+            variant='outlined'
+            margin='normal'
+            required
+            fullWidth
+            name='password'
+            label='Password'
+            type='password'
+            id='password'
+            value={password}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPassword(e.target.value)
+            }
+            autoComplete='current-password'
+          />
+          <FormControlLabel
+            control={<Checkbox value='remember' color='primary' />}
+            label='Remember me'
+          />
+          {errorMessage && (
+            <Typography color='secondary'>{errorMessage}</Typography>
+          )}
+          <Button
+            type='submit'
+            fullWidth
+            variant='contained'
+            color='primary'
+            className={classes.submit}
+          >
+            Sign In
+          </Button>
+        </form>
+        <Button className={classes.googleButton} onClick={startLogin} fullWidth>
+          <GoogleSignInButton />
         </Button>
         <Grid container>
           <Grid item xs>
@@ -107,7 +167,7 @@ const Login: React.FC<IProps> = ({ startLogin }) => {
             </Link>
           </Grid>
           <Grid item>
-            <Link href='#' variant='body2'>
+            <Link href='/signup' variant='body2'>
               {"Don't have an account? Sign Up"}
             </Link>
           </Grid>

@@ -60,7 +60,8 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.text.secondary,
       display: 'block',
       width: '80%',
-      alignItems: 'center'
+      alignItems: 'center',
+      wordWrap:'break-word'
     },
     fixed: {
       position: 'fixed',

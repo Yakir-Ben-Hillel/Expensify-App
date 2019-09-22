@@ -27,12 +27,10 @@ firebase.auth().onAuthStateChanged(user => {
     store.dispatch(login(user.uid));
     store.dispatch(startSetExpenses());
     renderApp();
-    if (history.location.pathname === '/') history.push('/dashboard');
     console.log('logged in');
   } else {
     store.dispatch(logout());
     renderApp();
     console.log('logout');
-    history.push('/');
   }
 });
