@@ -60,8 +60,6 @@ export default function SignUp() {
       case 'auth/weak-password':
         setErrorMessage('Password should be at least 6 characters.');
         break;
-      default:
-        setErrorMessage('');
     }
   };
 

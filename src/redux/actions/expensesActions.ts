@@ -135,7 +135,6 @@ export const startSetExpenses = () => {
           });
         });
         dispatch(setExpenses(expenses));
-        console.log('i just finished up setting the expenses array.');
       });
   };
 };

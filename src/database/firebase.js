@@ -1,5 +1,4 @@
 import firebase from 'firebase';
-
 const firebaseConfig = {
   apiKey: 'AIzaSyAVonlw8QdTL2dUHQHQXd3GvHPvHy2Sn1A',
   authDomain: 'expensify-app-ec00d.firebaseapp.com',
@@ -14,7 +13,4 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 firebase.auth().useDeviceLanguage();
-// firebase.auth().onAuthStateChanged(firebaseUser => {
-//   if (firebaseUser) console.log(firebaseUser);
-// });
 export { firebase, googleAuthProvider, database as default };

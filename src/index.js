@@ -22,15 +22,13 @@ const renderApp = () => {
     hasRendered = true;
   }
 };
-firebase.auth().onAuthStateChanged(user => {
+firebase.auth().onAuthStateChanged(async user => {
   if (user) {
     store.dispatch(login(user.uid));
-    store.dispatch(startSetExpenses());
+    await store.dispatch(startSetExpenses());
     renderApp();
-    console.log('logged in');
   } else {
     store.dispatch(logout());
     renderApp();
-    console.log('logout');
   }
 });

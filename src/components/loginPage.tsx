@@ -85,8 +85,6 @@ const Login: React.FC<IProps> = ({ startLogin }) => {
           'The password is invalid or the user signed in with Google.'
         );
         break;
-      default:
-        setErrorMessage('');
     }
   };
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {

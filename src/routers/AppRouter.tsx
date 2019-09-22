@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import createHistory from 'history/createBrowserHistory';
+import {createBrowserHistory} from 'history';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
@@ -11,7 +11,7 @@ import HelpPage from '../components/HelpPage';
 import Login from '../components/loginPage';
 import NotFoundPage from '../components/NotFoundPage';
 import { AppState } from '../redux/@types/state-interfaces';
-export const history = createHistory();
+export const history = createBrowserHistory();
 interface IProps {
   isAuthenticated: boolean;
 }
