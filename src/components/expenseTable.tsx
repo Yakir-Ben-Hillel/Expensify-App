@@ -2,23 +2,18 @@ import { MaterialUiPickersDate } from '@material-ui/pickers';
 import MaterialTable from 'material-table';
 import React from 'react';
 import { connect } from 'react-redux';
+import { Breakpoint } from 'react-socks';
 import { AppState, ISnackBar, Row } from '../redux/@types/state-interfaces';
 import { SetSnackBarStatus } from '../redux/@types/types';
-import {
-  startAddExpense,
-  startEditExpense,
-  startRemoveExpense,
-  startSetExpenses
-} from '../redux/actions/expensesActions';
+import { startAddExpense, startEditExpense, startRemoveExpense, startSetExpenses } from '../redux/actions/expensesActions';
 import { setSnackBarStatus } from '../redux/actions/snackBarActions';
+import { whichErrorMassageToDisplay } from './ExpenseFormFnc';
 import Amount from './FormComponents/AmountComponent';
 import DateComponent from './FormComponents/DateComponent';
 import Description from './FormComponents/DescriptionComponent';
 import Note from './FormComponents/NoteComponent';
-import { Breakpoint } from 'react-socks';
 import MobileExpenses from './mobileExpenses';
 import ErrorSnackBar from './SnackBars/errorBar';
-import { whichErrorMassageToDisplay } from './ExpenseFormFnc';
 export interface IProps {
   expenses: Row[];
   startEditExpense: (

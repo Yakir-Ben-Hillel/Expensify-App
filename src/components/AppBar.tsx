@@ -3,12 +3,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MoreIcon from '@material-ui/icons/MoreVert';
 import clsx from 'clsx';
 import React from 'react';
 import DrawerHandler from './AppBarComponents/Drawer';
 import RenderMenuDesktop from './AppBarComponents/RenderMenu';
-import RenderMobileMenu from './AppBarComponents/RenderMobileMenu';
 import useStyles from './AppBarComponents/useStyles';
 import { connect } from 'react-redux';
 import { startLogout } from '../redux/actions/auth';
@@ -26,9 +24,9 @@ const Bar: React.FC<IBar> = ({ open, setOpen }) => {
   ] = React.useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  // const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const menuId = 'primary-search-account-menu';
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  // const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMenu = () => (
     <RenderMenuDesktop
       anchorEl={anchorEl}
@@ -37,14 +35,14 @@ const Bar: React.FC<IBar> = ({ open, setOpen }) => {
       menuId={menuId}
     />
   );
-  const renderMobileMenu = () =>
-    RenderMobileMenu({
-      mobileMoreAnchorEl,
-      isMobileMenuOpen,
-      mobileMenuId,
-      handleMobileMenuClose,
-      handleProfileMenuOpen
-    });
+  // const renderMobileMenu = () =>
+  //   RenderMobileMenu({
+  //     mobileMoreAnchorEl,
+  //     isMobileMenuOpen,
+  //     mobileMenuId,
+  //     handleMobileMenuClose,
+  //     handleProfileMenuOpen
+  //   });
   // function handleDrawerOpen() {
   //   setOpen(true);
   // }
@@ -65,9 +63,9 @@ const Bar: React.FC<IBar> = ({ open, setOpen }) => {
     setAnchorEl(null);
     handleMobileMenuClose();
   }
-  function handleMobileMenuOpen(event: React.MouseEvent<HTMLElement>) {
-    setMobileMoreAnchorEl(event.currentTarget);
-  }
+  // function handleMobileMenuOpen(event: React.MouseEvent<HTMLElement>) {
+  //   setMobileMoreAnchorEl(event.currentTarget);
+  // }
   return (
     <div>
       <AppBar
@@ -75,15 +73,6 @@ const Bar: React.FC<IBar> = ({ open, setOpen }) => {
         position='static'
       >
         <Toolbar>
-          {/* <IconButton
-            edge='start'
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.hide)}
-            color='inherit'
-            aria-label='open drawer'
-          >
-            <MenuIcon />
-          </IconButton> */}
           <Typography className={classes.title} variant='h6' noWrap>
             Expensify App
           </Typography>
@@ -100,7 +89,7 @@ const Bar: React.FC<IBar> = ({ open, setOpen }) => {
               <AccountCircle />
             </IconButton>
           </div>
-          <div className={classes.sectionMobile}>
+          {/* <div className={classes.sectionMobile}>
             <IconButton
               aria-label='show more'
               aria-controls={mobileMenuId}
@@ -110,11 +99,11 @@ const Bar: React.FC<IBar> = ({ open, setOpen }) => {
             >
               <MoreIcon />
             </IconButton>
-          </div>
+          </div> */}
         </Toolbar>
         <DrawerHandler open={open} handleDrawerClose={handleDrawerClose} />
       </AppBar>
-      {renderMobileMenu()}
+      {/* {renderMobileMenu()} */}
       {renderMenu()}
     </div>
   );

@@ -75,5 +75,5 @@ export type FilterActionTypes =
   | SortByDate
   | SetStartDate
   | SetEndDate;
-export type AuthActionTypes = Login | Logout;
+export type AuthActionTypes = Login | Logout ;
 export type SnackBarActionTypes = SetSnackBarStatus;

@@ -1,42 +1,27 @@
-import {
-  Container,
-  ExpansionPanelActions,
-  Tooltip,
-  Fab
-} from '@material-ui/core';
+import { Container, ExpansionPanelActions, Fab, Tooltip } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import SearchBar from './searchBar';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import AddIcon from '@material-ui/icons/Add';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import NoteIcon from '@material-ui/icons/Note';
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  AppState,
-  IExpense,
-  ISnackBar,
-  IFilter
-} from '../redux/@types/state-interfaces';
-import { SetSnackBarStatus } from '../redux/@types/types';
-import {
-  startAddExpense,
-  startEditExpense,
-  startRemoveExpense,
-  startSetExpenses
-} from '../redux/actions/expensesActions';
-import { setSnackBarStatus } from '../redux/actions/snackBarActions';
-import Button from '@material-ui/core/Button';
 import BackgroundImage from '../images/no-data-template.jpg';
-import RemoveDialog from './FormComponents/removeDialog';
-import AddIcon from '@material-ui/icons/Add';
-import FormDialog from './FormComponents/formDialog';
-import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import { AppState, IExpense, IFilter, ISnackBar } from '../redux/@types/state-interfaces';
+import { SetSnackBarStatus } from '../redux/@types/types';
+import { startAddExpense, startEditExpense, startRemoveExpense, startSetExpenses } from '../redux/actions/expensesActions';
+import { setSnackBarStatus } from '../redux/actions/snackBarActions';
 import visibleExpenses from '../redux/selectors/visibleExpenses';
+import FormDialog from './FormComponents/formDialog';
+import RemoveDialog from './FormComponents/removeDialog';
+import SearchBar from './searchBar';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {

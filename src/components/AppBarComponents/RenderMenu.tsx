@@ -27,8 +27,6 @@ const renderMenu: React.FC<IMenu> = ({
     open={open}
     onClose={handleMenuClose}
   >
-    <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-    <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     <MenuItem onClick={() => startLogout() && handleMenuClose}>Logout</MenuItem>
   </Menu>
 );

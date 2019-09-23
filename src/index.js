@@ -2,10 +2,10 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppRouter, { history } from './routers/AppRouter';
+import AppRouter from './routers/AppRouter';
 import { Provider } from 'react-redux';
 import configureStore from './redux/store/configureStore';
-import { firebase } from './database/firebase';
+import { firebase, } from './database/firebase';
 import { login, logout } from './redux/actions/auth';
 import { startSetExpenses } from './redux/actions/expensesActions';
 import 'normalize.css/normalize.css';

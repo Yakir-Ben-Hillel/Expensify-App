@@ -6,9 +6,8 @@ import { Route, Router, Switch } from 'react-router-dom';
 import Bar from '../components/AppBar';
 import useStyles from '../components/AppBarComponents/useStyles';
 import ExpenseDashboardPage from '../components/ExpenseDashboardPage';
-import Signup from '../components/signup';
-import HelpPage from '../components/HelpPage';
-import Login from '../components/loginPage';
+import Signup from '../components/authPages/signup';
+import Login from '../components/authPages/loginPage';
 import NotFoundPage from '../components/NotFoundPage';
 import { AppState } from '../redux/@types/state-interfaces';
 export const history = createBrowserHistory();
@@ -31,7 +30,6 @@ const AppRouter: React.FC<IProps> = props => {
           {props.isAuthenticated ? (
             <Switch>
               <Route exact path='/' component={ExpenseDashboardPage} />
-              <Route path='/help' component={HelpPage} />
               <Route component={NotFoundPage} />
             </Switch>
           ) : (

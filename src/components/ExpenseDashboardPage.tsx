@@ -2,10 +2,10 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import React from 'react';
 import { connect } from 'react-redux';
+import { BreakpointProvider } from 'react-socks';
 import { AppState } from '../redux/@types/state-interfaces';
 import { startSetExpenses } from '../redux/actions/expensesActions';
 import ExpenseList from './expenseTable';
-import { BreakpointProvider } from 'react-socks';
 import AddExpenseSnackBar from './SnackBars/AddExpenseBar';
 interface IProps {
   startSetExpenses: () => void;

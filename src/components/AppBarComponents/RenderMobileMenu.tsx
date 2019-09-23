@@ -29,22 +29,6 @@ const renderMobileMenu: React.FC<IMobileMenu> = ({
     open={isMobileMenuOpen}
     onClose={handleMobileMenuClose}
   >
-    <MenuItem>
-      <IconButton aria-label='show 1 new mails' color='inherit'>
-        <Badge badgeContent={1} color='secondary'>
-          <MailIcon />
-        </Badge>
-      </IconButton>
-      <p>Messages</p>
-    </MenuItem>
-    <MenuItem>
-      <IconButton aria-label='show 10 new notifications' color='inherit'>
-        <Badge badgeContent={10} color='secondary'>
-          <NotificationsIcon />
-        </Badge>
-      </IconButton>
-      <p>Notifications</p>
-    </MenuItem>
     <MenuItem onClick={handleProfileMenuOpen}>
       <IconButton
         aria-label='account of current user'

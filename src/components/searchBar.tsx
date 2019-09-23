@@ -1,16 +1,11 @@
-import React from 'react';
-import {
-  InputAdornment,
-  TextField,
-  FormControl,
-  IconButton
-} from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
+import { FormControl, IconButton, InputAdornment, TextField } from '@material-ui/core';
 import ClearIcon from '@material-ui/icons/Clear';
-import { setTextFilter } from '../redux/actions/filterActions';
+import SearchIcon from '@material-ui/icons/Search';
+import React from 'react';
 import { connect } from 'react-redux';
 import { AppState, IFilter } from '../redux/@types/state-interfaces';
 import { SetTextFilter } from '../redux/@types/types';
+import { setTextFilter } from '../redux/actions/filterActions';
 interface IProps {
   filters: IFilter;
   setTextFilter: (text: string) => SetTextFilter;
