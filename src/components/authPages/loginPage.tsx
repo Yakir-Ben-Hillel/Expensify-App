@@ -20,7 +20,7 @@ function Copyright() {
   return (
     <Typography variant='body2' color='textSecondary' align='center'>
       {'Copyright © '}
-      Yakir Ben Hillel {new Date().getFullYear()}
+      Yakir Ben Hillel 2019
       {'.'}
     </Typography>
   );
@@ -159,11 +159,6 @@ const Login: React.FC<IProps> = ({ startLogin }) => {
           <GoogleSignInButton />
         </Button>
         <Grid container>
-          <Grid item xs>
-            <Link href='#' variant='body2'>
-              Forgot password?
-            </Link>
-          </Grid>
           <Grid item>
             <Link href='/signup' variant='body2'>
               {"Don't have an account? Sign Up"}
@@ -180,7 +175,4 @@ const Login: React.FC<IProps> = ({ startLogin }) => {
 const mapDispatchToProps = {
   startLogin
 };
-export default connect(
-  null,
-  mapDispatchToProps
-)(Login);
+export default connect(null, mapDispatchToProps)(Login);

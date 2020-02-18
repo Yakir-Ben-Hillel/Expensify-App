@@ -1,4 +1,9 @@
-import { FormControl, IconButton, InputAdornment, TextField } from '@material-ui/core';
+import {
+  FormControl,
+  IconButton,
+  InputAdornment,
+  TextField
+} from '@material-ui/core';
 import ClearIcon from '@material-ui/icons/Clear';
 import SearchIcon from '@material-ui/icons/Search';
 import React from 'react';
@@ -19,7 +24,7 @@ const SearchBar: React.FC<IProps> = props => {
           placeholder='Search'
           value={props.filters.text}
           style={{
-              marginBottom:'10px'
+            marginBottom: '10px'
           }}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             props.setTextFilter(e.target.value);
@@ -54,7 +59,4 @@ const mapStateToProps = (state: AppState) => {
 const mapDispatchToProps = {
   setTextFilter
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SearchBar);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

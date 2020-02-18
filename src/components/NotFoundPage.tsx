@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NotFoundPage:React.FC  = () => (
+const NotFoundPage: React.FC = () => (
   <div>
-    404 - <Link to="/">Go home</Link>
+    404 - <Link to='/'>Go home</Link>
   </div>
 );
 

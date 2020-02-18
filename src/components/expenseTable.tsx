@@ -5,7 +5,12 @@ import { connect } from 'react-redux';
 import { Breakpoint } from 'react-socks';
 import { AppState, ISnackBar, Row } from '../redux/@types/state-interfaces';
 import { SetSnackBarStatus } from '../redux/@types/types';
-import { startAddExpense, startEditExpense, startRemoveExpense, startSetExpenses } from '../redux/actions/expensesActions';
+import {
+  startAddExpense,
+  startEditExpense,
+  startRemoveExpense,
+  startSetExpenses
+} from '../redux/actions/expensesActions';
 import { setSnackBarStatus } from '../redux/actions/snackBarActions';
 import { whichErrorMassageToDisplay } from './ExpenseFormFnc';
 import Amount from './FormComponents/AmountComponent';
@@ -208,7 +213,4 @@ const mapStateToProps = (state: AppState) => {
     expenses: state.expenses
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ExpenseList);
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseList);

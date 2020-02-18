@@ -1,4 +1,9 @@
-import { Container, ExpansionPanelActions, Fab, Tooltip } from '@material-ui/core';
+import {
+  Container,
+  ExpansionPanelActions,
+  Fab,
+  Tooltip
+} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -14,9 +19,19 @@ import NoteIcon from '@material-ui/icons/Note';
 import React from 'react';
 import { connect } from 'react-redux';
 import BackgroundImage from '../images/no-data-template.jpg';
-import { AppState, IExpense, IFilter, ISnackBar } from '../redux/@types/state-interfaces';
+import {
+  AppState,
+  IExpense,
+  IFilter,
+  ISnackBar
+} from '../redux/@types/state-interfaces';
 import { SetSnackBarStatus } from '../redux/@types/types';
-import { startAddExpense, startEditExpense, startRemoveExpense, startSetExpenses } from '../redux/actions/expensesActions';
+import {
+  startAddExpense,
+  startEditExpense,
+  startRemoveExpense,
+  startSetExpenses
+} from '../redux/actions/expensesActions';
 import { setSnackBarStatus } from '../redux/actions/snackBarActions';
 import visibleExpenses from '../redux/selectors/visibleExpenses';
 import FormDialog from './FormComponents/formDialog';
@@ -46,7 +61,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'block',
       width: '80%',
       alignItems: 'center',
-      wordWrap:'break-word'
+      wordWrap: 'break-word'
     },
     fixed: {
       position: 'fixed',
@@ -205,7 +220,4 @@ const mapStateToProps = (state: AppState) => {
     snackBar: state.snackBar
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MobileExpensesList);
+export default connect(mapStateToProps, mapDispatchToProps)(MobileExpensesList);

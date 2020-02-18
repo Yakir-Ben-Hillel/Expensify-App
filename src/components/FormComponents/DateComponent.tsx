@@ -17,7 +17,7 @@ const DatePicker: React.FC<IDatePicker> = ({ createdAt, onDateChange }) => {
           className={classes.root}
           margin='dense'
           id='date-picker-dialog'
-          label='date-picker-dialog'
+          label='Date'
           format='dd/MM/yyyy'
           value={createdAt}
           onChange={onDateChange}

@@ -38,7 +38,4 @@ const mapDispatchToProps = {
   setSnackBarStatus
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ErrorBar);
+export default connect(mapStateToProps, mapDispatchToProps)(ErrorBar);

@@ -1,5 +1,10 @@
 import InputBase from '@material-ui/core/InputBase';
-import { createStyles, makeStyles, Theme, withStyles } from '@material-ui/core/styles';
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+  withStyles
+} from '@material-ui/core/styles';
 import React from 'react';
 import NumberFormat from 'react-number-format';
 
