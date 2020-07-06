@@ -1,4 +1,3 @@
-import { MaterialUiPickersDate } from '@material-ui/pickers';
 import MaterialTable from 'material-table';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -9,7 +8,7 @@ import {
   startAddExpense,
   startEditExpense,
   startRemoveExpense,
-  startSetExpenses
+  startSetExpenses,
 } from '../redux/actions/expensesActions';
 import { setSnackBarStatus } from '../redux/actions/snackBarActions';
 import { whichErrorMassageToDisplay } from './ExpenseFormFnc';
@@ -19,6 +18,7 @@ import Description from './FormComponents/DescriptionComponent';
 import Note from './FormComponents/NoteComponent';
 import MobileExpenses from './mobileExpenses';
 import ErrorSnackBar from './SnackBars/errorBar';
+import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 export interface IProps {
   expenses: Row[];
   startEditExpense: (
@@ -42,9 +42,9 @@ export interface IProps {
   setSnackBarStatus: (snackBarStatus: ISnackBar) => SetSnackBarStatus;
 }
 
-export const ExpenseList: React.FC<IProps> = props => {
-  const [selectedRow, SetSelectedRow] = React.useState();
-  const [massage, SetMassage] = React.useState();
+export const ExpenseList: React.FC<IProps> = (props) => {
+  const [selectedRow, SetSelectedRow] = React.useState<Row>();
+  const [massage, SetMassage] = React.useState<string>();
   return (
     <div>
       <Breakpoint medium up>
@@ -56,36 +56,36 @@ export const ExpenseList: React.FC<IProps> = props => {
               field: 'description',
               cellStyle: {
                 wordBreak: 'break-word',
-                wordWrap: 'break-word'
+                wordWrap: 'break-word',
               },
-              editComponent: props => (
+              editComponent: (props) => (
                 <Description
                   description={props.value}
-                  onDescriptionChange={e => {
+                  onDescriptionChange={(e) => {
                     props.onChange(e.target.value);
                   }}
                 />
-              )
+              ),
             },
             {
               title: 'Amount',
               field: 'amount',
-              editComponent: props => (
+              editComponent: (props) => (
                 <Amount
                   amount={props.value}
-                  onAmountChange={e => {
+                  onAmountChange={(e) => {
                     const amount = e.target.value;
                     if (amount.match(/^\d{1,}(\.\d{0,2})?$/) || amount === '') {
                       props.onChange(amount);
                     }
                   }}
                 />
-              )
+              ),
             },
             {
               title: 'CreatedAt',
               field: 'createdAt',
-              editComponent: props => (
+              editComponent: (props) => (
                 <DateComponent
                   createdAt={props.value}
                   onDateChange={(createdAt: MaterialUiPickersDate) => {
@@ -94,16 +94,16 @@ export const ExpenseList: React.FC<IProps> = props => {
                     }
                   }}
                 />
-              )
+              ),
             },
 
             {
               title: 'Note',
               field: 'note',
-              editComponent: props => (
+              editComponent: (props) => (
                 <Note
                   note={props.value}
-                  onNoteChange={e => {
+                  onNoteChange={(e) => {
                     props.onChange(e.target.value);
                   }}
                 />
@@ -111,19 +111,21 @@ export const ExpenseList: React.FC<IProps> = props => {
               cellStyle: {
                 wordBreak: 'break-word',
                 wordWrap: 'break-word',
-                maxWidth: '220px'
-              }
-            }
+                maxWidth: '220px',
+              },
+            },
           ]}
           data={props.expenses}
-          onRowClick={(e, selectedRow) => SetSelectedRow(selectedRow)}
+          onRowClick={(e, selectedRow) => {
+            if (selectedRow) SetSelectedRow(selectedRow);
+          }}
           options={{
-            rowStyle: rowData => ({
+            rowStyle: (rowData) => ({
               backgroundColor:
                 selectedRow && selectedRow.tableData.id === rowData.tableData.id
                   ? '#EEE'
-                  : '#FFF'
-            })
+                  : '#FFF',
+            }),
           }}
           editable={{
             onRowUpdate: (newData, oldData) =>
@@ -135,7 +137,7 @@ export const ExpenseList: React.FC<IProps> = props => {
                         description: newData.description,
                         amount: newData.amount,
                         createdAt: newData.createdAt,
-                        note: newData.note
+                        note: newData.note,
                       });
                   } else {
                     SetMassage(
@@ -146,7 +148,7 @@ export const ExpenseList: React.FC<IProps> = props => {
                     );
                     props.setSnackBarStatus({
                       isOpenAddExpense: false,
-                      isOpenError: true
+                      isOpenError: true,
                     });
                     reject('Invalid input.');
                   }
@@ -154,7 +156,7 @@ export const ExpenseList: React.FC<IProps> = props => {
                 }, 2000);
               }),
 
-            onRowAdd: newData =>
+            onRowAdd: (newData) =>
               new Promise((resolve, reject) => {
                 setTimeout(() => {
                   if (newData.description && newData.amount) {
@@ -162,11 +164,11 @@ export const ExpenseList: React.FC<IProps> = props => {
                       description: newData.description,
                       note: newData.note,
                       amount: newData.amount,
-                      createdAt: newData.createdAt
+                      createdAt: newData.createdAt,
                     });
                     props.setSnackBarStatus({
                       isOpenAddExpense: true,
-                      isOpenError: false
+                      isOpenError: false,
                     });
                     resolve();
                   } else {
@@ -178,19 +180,19 @@ export const ExpenseList: React.FC<IProps> = props => {
                     );
                     props.setSnackBarStatus({
                       isOpenAddExpense: false,
-                      isOpenError: true
+                      isOpenError: true,
                     });
                     reject('Invalid input.');
                   }
                 }, 2000);
               }),
-            onRowDelete: oldData =>
+            onRowDelete: (oldData) =>
               new Promise((resolve, reject) => {
                 setTimeout(() => {
                   if (oldData.id) props.startRemoveExpense(oldData.id);
                   resolve();
                 }, 2000);
-              })
+              }),
           }}
         />
         <ErrorSnackBar variant='error' massage={massage} />
@@ -206,11 +208,11 @@ const mapDispatchToProps = {
   startRemoveExpense,
   startSetExpenses,
   startAddExpense,
-  setSnackBarStatus
+  setSnackBarStatus,
 };
 const mapStateToProps = (state: AppState) => {
   return {
-    expenses: state.expenses
+    expenses: state.expenses,
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseList);

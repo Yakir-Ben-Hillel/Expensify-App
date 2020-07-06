@@ -90,7 +90,7 @@ interface IProps {
 const MobileExpensesList: React.FC<IProps> = props => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState<number | false>(false);
-  const [expenseToEdit, setExpenseToEdit] = React.useState();
+  const [expenseToEdit, setExpenseToEdit] = React.useState<IExpense>();
   const [uid, SetUid] = React.useState<string | null>('');
   const [removeDialogOpen, setRemoveDialogOpen] = React.useState(false);
   const [formDialogOpen, setFormDialogOpen] = React.useState(false);

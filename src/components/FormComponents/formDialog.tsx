@@ -5,9 +5,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { MaterialUiPickersDate } from '@material-ui/pickers';
 import React from 'react';
 import { connect } from 'react-redux';
+import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 import { IExpense, ISnackBar } from '../../redux/@types/state-interfaces';
 import { SetSnackBarStatus } from '../../redux/@types/types';
 import {

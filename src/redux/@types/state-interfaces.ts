@@ -1,5 +1,3 @@
-import React from 'react';
-import { TransitionProps } from '@material-ui/core/transitions/transition';
 export interface IExpense {
   id: string | null;
   description: string;
@@ -21,7 +19,7 @@ export interface IFilter {
 export interface ISnackBar {
   isOpenAddExpense: boolean;
   isOpenError: boolean;
-  Transition?: React.ComponentType<TransitionProps>;
+  Transition?: any;
 }
 export interface IAuthenticated {
   uid?: boolean;

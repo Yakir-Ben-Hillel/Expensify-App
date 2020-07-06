@@ -19,6 +19,7 @@ const Bar: React.FC<IBar> = ({ open, setOpen }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     mobileMoreAnchorEl,
     setMobileMoreAnchorEl
   ] = React.useState<null | HTMLElement>(null);
