@@ -2,7 +2,6 @@ import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import clsx from 'clsx';
 import React from 'react';
 import DrawerHandler from './AppBarComponents/Drawer';
@@ -10,18 +9,23 @@ import RenderMenuDesktop from './AppBarComponents/RenderMenu';
 import useStyles from './AppBarComponents/useStyles';
 import { connect } from 'react-redux';
 import { startLogout } from '../redux/actions/auth';
+import { AppState, IAuthentication } from '../redux/@types/state-interfaces';
+import Avatar from '@material-ui/core/Avatar';
+import { Tooltip } from '@material-ui/core';
+
 interface IBar {
+  authentication: IAuthentication;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   startLogout: () => Promise<void>;
 }
-const Bar: React.FC<IBar> = ({ open, setOpen }) => {
+const Bar: React.FC<IBar> = ({ authentication, open, setOpen }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     mobileMoreAnchorEl,
-    setMobileMoreAnchorEl
+    setMobileMoreAnchorEl,
   ] = React.useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -79,16 +83,26 @@ const Bar: React.FC<IBar> = ({ open, setOpen }) => {
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton
-              edge='end'
-              aria-label='account of current user'
-              aria-controls={menuId}
-              aria-haspopup='true'
-              onClick={handleProfileMenuOpen}
-              color='inherit'
+            <Tooltip
+              title={
+                authentication.username ? authentication.username : 'options'
+              }
+              placement='left-end'
             >
-              <AccountCircle />
-            </IconButton>
+              <IconButton
+                edge='end'
+                aria-label='account of current user'
+                aria-controls={menuId}
+                aria-haspopup='true'
+                onClick={handleProfileMenuOpen}
+                color='inherit'
+              >
+                <Avatar
+                  alt={authentication.username}
+                  src={authentication.photoURL}
+                />
+              </IconButton>
+            </Tooltip>
           </div>
           {/* <div className={classes.sectionMobile}>
             <IconButton
@@ -110,10 +124,11 @@ const Bar: React.FC<IBar> = ({ open, setOpen }) => {
   );
 };
 const mapDispatchToProps = {
-  startLogout
+  startLogout,
 };
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(Bar);
+const mapStateToProps = (state: AppState) => {
+  return {
+    authentication: state.authentication,
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Bar);

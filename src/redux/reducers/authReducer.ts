@@ -4,7 +4,9 @@ export default (state = {}, action: AuthActionTypes) => {
   switch (action.type) {
     case 'LOGIN':
       return {
-        uid: action.uid
+        username: action.username,
+        photoURL: action.photoURL,
+        uid: action.uid,
       };
     case 'LOGOUT':
       return {};

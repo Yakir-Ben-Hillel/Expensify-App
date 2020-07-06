@@ -21,12 +21,14 @@ export interface ISnackBar {
   isOpenError: boolean;
   Transition?: any;
 }
-export interface IAuthenticated {
-  uid?: boolean;
+export interface IAuthentication {
+  username?: string;
+  photoURL?: string;
+  uid?: string;
 }
 export interface AppState {
   expenses: Row[];
   filters: IFilter;
   snackBar: ISnackBar;
-  authentication: IAuthenticated;
+  authentication: IAuthentication;
 }

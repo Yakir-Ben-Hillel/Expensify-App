@@ -59,6 +59,8 @@ export interface SetEndDate {
 }
 export interface Login {
   type: typeof LOGIN;
+  username: string;
+  photoURL: string;
   uid: string;
 }
 export interface Logout {
@@ -75,5 +77,5 @@ export type FilterActionTypes =
   | SortByDate
   | SetStartDate
   | SetEndDate;
-export type AuthActionTypes = Login | Logout ;
+export type AuthActionTypes = Login | Logout;
 export type SnackBarActionTypes = SetSnackBarStatus;

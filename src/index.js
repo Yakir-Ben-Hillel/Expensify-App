@@ -24,8 +24,8 @@ const renderApp = () => {
 };
 firebase.auth().onAuthStateChanged(async user => {
   if (user) {
-    store.dispatch(login(user.uid));
-    await store.dispatch(await startSetExpenses());
+    store.dispatch(login(user.displayName,user.photoURL,user.uid));
+    store.dispatch(startSetExpenses());
     renderApp();
   } else {
     store.dispatch(logout());
