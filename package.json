@@ -48,7 +48,7 @@
     "stripe": "^8.64.0",
     "typescript-eslint": "0.0.1-alpha.0",
     "uuid": "^3.4.0",
-    "validator": "^11.1.0"
+    "validator": "^13.7.0"
   },
   "scripts": {
     "start-dev": "react-scripts start",
